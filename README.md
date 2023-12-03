@@ -16,3 +16,19 @@ n % 10 || n / 10
 ```typescript
 ~~(a/b)
 ```
+
+### single line: automatically init properties when it doesn't exist
+
+use `??=`:
+
+`(object[key]??=[]).push(3)`; `(counter[key]??=0)++`
+
+See examples in day3b
+
+```typescript
+const gearedNumbers: {[id:string]:number[]} = {}
+......
+            if (r.charAt(j) === '*') {
+                (gearedNumbers[`gear_${i}_${j}`] ??= []).push(n)
+            }
+```
