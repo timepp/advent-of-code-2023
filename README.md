@@ -1,7 +1,7 @@
 # Keep track of advent of code 2023
 
 All using typescript and executing with [deno](https://deno.land/)
-I feel it's pleasure to challenge myself with as less as code to solve the problem.
+I feel it's a pleasure to challenge myself with as less as code (while, still in good readability) to solve the problem.
 
 ## javascript sweet tricks
 
