@@ -9,33 +9,25 @@ for (const l of input.slice(1)) {
     }
 }
 
-// subtract range from a list of its sub ranges, resulting to a list of remaining ranges
-function subtractRanges(r: number[], v: number[][]) {
-    v.sort((a, b) => a[0] - b[0])
-    const arr = [r[0], ...v.flat(), r[1]]
-    return arr.map((v, i) => i % 2 === 0? [v, arr[i + 1]]: [0, 0]).filter(r => r[0] < r[1])
-}
-
-// map a range, resulting to a list of ranges
-function mapRange(m: number[][], r: number[]) {
-    const consumed = []
+function mapRange(m: number[][], range: number[]) {
+    const points = [-Infinity, ...m.map(v => [v[1], v[1] + v[2]]).flat(), Infinity]
     const result = []
-    for (const v of m) {
-        const s = Math.max(v[1], r[0])
-        const e = Math.min(v[1] + v[2], r[1])
-        if (s < e) {
-            consumed.push([s, e])
-            result.push([v[0] + s - v[1], v[0] + e - v[1]])
-        }
+    for (let i = 0; i < points.length - 1; i++) {
+        const s = Math.max(points[i], range[0])
+        const e = Math.min(points[i + 1], range[1])
+        if (s >= e) continue
+        const [to, from] = i % 2 === 0? [0, 0] : m[~~(i/2)] // trivial mapping range if i is even
+        result.push([s + to - from, e + to - from])
     }
-    return [...result, ...subtractRanges(r, consumed)]
+    return result
 }
 
-function mapRanges(m: number[][], r: number[][]) {
-    return r.map(v => mapRange(m, v)).flat()
+function mapRanges(m: number[][], ranges: number[][]) {
+    return ranges.map(r => mapRange(m, r)).flat()
 }
 
 const minLocations = []
+maps.forEach(m => m.sort((a, b) => a[1] - b[1]))
 for (let i = 0; i < seeds.length; i += 2) {
     let r = [[seeds[i], seeds[i] + seeds[i + 1]]]
     for (const m of maps) {

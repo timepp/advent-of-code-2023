@@ -13,8 +13,9 @@ const data = lines.map(l => {
 
 let sum = 0
 for (let i = 0; i < data.length; i++) {
-    const cubeSets = data[i]
-    if (!cubeSets.find(c => c.red > 12 || c.green > 13 || c.blue > 14)) sum += i+1
+    if (!data[i].find(c => c.red > 12 || c.green > 13 || c.blue > 14)) {
+        sum += i+1
+    }
 }
 console.log(sum)
 // 2085

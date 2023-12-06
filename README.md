@@ -1,9 +1,10 @@
 # Keep track of advent of code 2023
 
 All using typescript and executing with [deno](https://deno.land/)
+
 I feel it's a pleasure to challenge myself with as less as code (while, still in good readability) to solve the problem.
 
-## javascript sweet tricks
+## javascript sweet tricks I learned/used during the coding
 
 ### keeping a single non zero digit (n < 100)
 
@@ -11,7 +12,7 @@ I feel it's a pleasure to challenge myself with as less as code (while, still in
 n % 10 || n / 10
 ```
 
-### clean ways to get same result of `a/b` in C/C++
+### clean ways to get the integral part of a/b
 
 ```typescript
 ~~(a/b)
@@ -21,7 +22,7 @@ n % 10 || n / 10
 
 use `??=`:
 
-`(object[key]??=[]).push(3)`; `(counter[key]??=0)++`
+`(object[key]??=[]).push(3)`;
 
 See examples in day3b
 
