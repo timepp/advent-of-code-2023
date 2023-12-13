@@ -43,8 +43,7 @@ function getResolveCount(s: string, pos: number, sizes: number[]) {
 let sum = 0
 for (const [record, sizes] of data) {
     memo.clear()
-    const c = getResolveCount(record, 0, sizes)
-    sum += c
+    sum += getResolveCount(record, 0, sizes)
 }
 
 console.log(sum)
