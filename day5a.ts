@@ -1,14 +1,6 @@
-const input = Deno.readTextFileSync("./day5.txt").split(/\r?\n/).filter(l => l.length > 0)
-const seeds = input[0].split(':')[1].trim().split(/\s+/).map(Number)
-const maps: number[][][] = []
-for (const l of input.slice(1)) {
-    if (l.endsWith('map:')) {
-        maps.push([])
-    } else {
-        maps.at(-1)!.push(l.split(/\s+/).map(Number))
-    }
-}
-
+const input = Deno.readTextFileSync("./day5.txt").split(/[^\n]+map:/).map(s => s.split(/\r?\n/).filter(l => l.length > 0))
+const seeds = input[0][0].split(':')[1].trim().split(/\s+/).map(Number)
+const maps = input.slice(1).map(m => m.map(l => l.split(/\s+/).map(Number)))
 const locations = seeds.map(v => {
     for (const m of maps) {
         const r = m.find(r => v >= r[1] && v < r[1] + r[2])
